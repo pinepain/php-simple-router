@@ -11,12 +11,13 @@ interface RouterInterface
     /**
      * @param string $route
      * @param string $handler
+     * @param array $extra
      *
      * @return Route
      *
      * @throws Exception
      */
-    public function add(string $route, string $handler): Route;
+    public function add(string $route, string $handler, array $extra): Route;
 
     /**
      * @param string $url

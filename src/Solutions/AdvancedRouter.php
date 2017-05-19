@@ -45,11 +45,11 @@ class AdvancedRouter implements RouterInterface
     /**
      * {@inheritdoc}
      */
-    public function add(string $route, string $handler): Route
+    public function add(string $route, string $handler, array $extra = []): Route
     {
         $route = $this->enforceTrailingSlashPolicy($route, self::ENFORCE_TRAILING_SLASHES_IN_RULE, self::REMOVE_TRAILING_SLASHES_IN_RULE);
 
-        return $this->router->add($route, $handler);
+        return $this->router->add($route, $handler, $extra);
     }
 
     /**

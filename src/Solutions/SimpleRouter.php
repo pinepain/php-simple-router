@@ -41,9 +41,9 @@ class SimpleRouter implements RouterInterface
     /**
      * {@inheritdoc}
      */
-    public function add(string $route, string $handler): Route
+    public function add(string $route, string $handler, array $extra = []): Route
     {
-        return $this->collector->add($route, $handler);
+        return $this->collector->add($route, $handler, $extra);
     }
 
     /**

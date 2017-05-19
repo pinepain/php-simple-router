@@ -53,7 +53,7 @@ class Matcher
         if (isset($this->static_rules[$url])) {
             $route = $this->static_rules[$url];
 
-            return new Match($route->handler);
+            return new Match($route->handler, [], $route->extra);
         }
 
         return $this->matchDynamicRoute($this->dynamic_rules, $url);
@@ -78,7 +78,7 @@ class Matcher
 
             $resolved_variables = $this->extractVariablesFromMatches($matches, $crumb->variables);
 
-            return new Match($crumb->handler, $resolved_variables);
+            return new Match($crumb->handler, $resolved_variables, $crumb->extra);
         }
 
         throw new NotFoundException("Url '{$url}' does not match any route");

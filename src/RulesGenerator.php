@@ -94,7 +94,7 @@ class RulesGenerator
 
             $regexes[] = $compiled->getRegex() . str_repeat('()', $num_groups - $num_variables);
 
-            $routes_map[$num_groups + 1] = new Crumb($route->handler, $variables); // +1 because of 0-match (whole given string)
+            $routes_map[$num_groups + 1] = new Crumb($route->handler, $variables, $route->extra); // +1 because of 0-match (whole given string)
 
             $num_groups++;
         }

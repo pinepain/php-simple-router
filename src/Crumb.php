@@ -14,14 +14,20 @@ class Crumb
      * @var array
      */
     public $variables;
+    /**
+     * @var array
+     */
+    public $extra;
 
     /**
      * @param string $handler
      * @param array  $variables
+     * @param array  $extra
      */
-    public function __construct(string $handler, array $variables)
+    public function __construct(string $handler, array $variables, array $extra = [])
     {
         $this->handler   = $handler;
         $this->variables = $variables;
+        $this->extra = $extra;
     }
 }

@@ -34,11 +34,12 @@ class RoutesCollector
     /**
      * @param string $route
      * @param string $handler
+     * @param array $extra
      *
      * @return Route
      * @throws Exception
      */
-    public function add(string $route, string $handler)
+    public function add(string $route, string $handler, array $extra = [])
     {
         if (isset($this->static[$route]) || isset($this->dynamic[$route])) {
             throw new Exception("Route '{$route}' already registered");
@@ -46,7 +47,7 @@ class RoutesCollector
 
         $parsed = $this->parser->parse($route);
 
-        $r = new Route($handler, $parsed);
+        $r = new Route($handler, $parsed, $extra);
 
         if ($this->isStatic($parsed)) {
             $this->static[$route] = $r;

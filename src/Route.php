@@ -16,14 +16,20 @@ class Route
      * @var AbstractChunk[]
      */
     public $chunks;
+    /**
+     * @var array
+     */
+    public $extra;
 
     /**
      * @param string $handler
      * @param AbstractChunk[] $chunks
+     * @param array $extra
      */
-    public function __construct(string $handler, array $chunks)
+    public function __construct(string $handler, array $chunks, array $extra = [])
     {
         $this->handler = $handler;
         $this->chunks = $chunks;
+        $this->extra = $extra;
     }
 }

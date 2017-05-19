@@ -94,6 +94,28 @@ class FeaturesTest extends TestCase
         $this->assertSame('without.trailing.second', $res->handler);
     }
 
+    public function testMatchExtra()
+    {
+        $router = $this->router;
+
+        $router->add('/route/with-dash/{some-param}', 'dynamic', ['key' => 'val']);
+        $router->add('/static', 'static');
+        $router->add('/static2', 'static2', ['k' => ['v']]);
+
+        $res = $router->match('/route/with-dash/some');
+
+        $this->assertInstanceOf(Match::class, $res);
+        $this->assertSame(['key' => 'val'], $res->extra);
+
+        $res = $router->match('/static');
+        $this->assertInstanceOf(Match::class, $res);
+        $this->assertSame([], $res->extra);
+
+        $res = $router->match('/static2');
+        $this->assertInstanceOf(Match::class, $res);
+        $this->assertSame(['k' => ['v']], $res->extra);
+    }
+
     /**
      * @expectedException \Pinepain\SimpleRouting\NotFoundException
      * @expectedExceptionMessage Url '/nonexistent' does not match any route
